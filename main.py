@@ -34,6 +34,11 @@ def playSong(sp, songName):
 	#thankyou= 'spotify:track:2rPE9A1vEgShuZxxzR2tZH'
 	songID= ['spotify:track:'+songID]
 	sp.start_playback(device_id=None,context_uri=None,uris=songID,offset=None)
+def playPLSong(sp, IDpl):
+	#print(songID)
+	#thankyou= 'spotify:track:2rPE9A1vEgShuZxxzR2tZH'
+	IDpl= ['spotify:playlist:'+IDpl]
+	sp.start_playback(device_id=None,context_uri=IDpl)
 
 def getRecSongs(sp, userID):
 	TopTracks = sp.current_user_top_tracks(time_range='medium_term',limit=10,offset=0)
@@ -42,14 +47,14 @@ def getRecSongs(sp, userID):
 		tracks.append('spotify:track:'+item['id'])
 	tracks =[tracks]
 	RecSongList = sp.recommendations(seed_tracks=tracks, limit=10, country=None)
-	
+
 	print(RecSongList)
-	
+
 def createPlaylist(sp,user):
 	PLname = input("Enter playlist name you wish to create: ")
 	print("creating Playlist "+PLname+ " now")
-	
-	Info = sp.user_playlist_create(user, PLname, public=False,description="Made with Python")
+
+	Info = sp.user_playlist_create(user, PLname, public=False)
 	PLid = Info['id']
 	print(PLid)
 	return PLid
@@ -70,12 +75,14 @@ def main(args):
 	#playSong(sp,'instrumental thank you next')
 	#getRecSongs(sp, username)
 	PLid = createPlaylist(sp, username)
-	
-	
+	print(PLid)
+	playPLSong(sp, PLid)
+
+
 	#playGame.inputAns(sp, songID)
-	
-	
-	
+
+
+
 	ans = input("Do you want to keep a playlist of Answers? (yes/no)")
 	if(ans == "yes"):
 		print("ok")
