@@ -69,10 +69,10 @@ def main(args):
 
 	#playSong(sp,'instrumental thank you next')
 	#getRecSongs(sp, username)
-	PLid = createPlaylist(sp, user)
+	PLid = createPlaylist(sp, username)
 	
 	
-	playGame.inputAns(sp, songID)
+	#playGame.inputAns(sp, songID)
 	
 	
 	
