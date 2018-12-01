@@ -1,5 +1,4 @@
-import os,sys, spotipy, json, webbrowser, time, userProf, extras
-import songStats
+import os,sys, spotipy, json, webbrowser, time
 import spotipy.util as util
 from json.decoder import JSONDecodeError
 
@@ -22,22 +21,32 @@ def login(username, scope):
 		return -1
 
 def getSongID(sp, songName):
-	print(songName)
+	#print(songName)
 	song = sp.search(songName, limit =1, offset=0,type='track',market=None)
 	for stuff in song['tracks']['items']:
+		print(stuff['name'])
 		return stuff['id']
     
- def playSong(sp, songID):
- 
+def playSong(sp, songName):
+	songID = getSongID(sp, songName)
+	print(songID)
+	#thankyou= 'spotify:track:2rPE9A1vEgShuZxxzR2tZH'
+	songID= ['spotify:track:'+songID]
+	sp.start_playback(device_id=None,context_uri=None,uris=songID,offset=None)
 
 
 
 
+
+	 
+def main(args):
 	#make this a user input
 	username ='1210610133'#Jack Dempseys User id public info
 	scope = 'user-library-read user-read-private user-read-playback-state\
 		user-modify-playback-state playlist-modify-public playlist-modify-private'
 	sp = login(username, scope)
+	
+	playSong(sp,'instrumental thank you next')
   
   
   
