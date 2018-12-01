@@ -38,7 +38,7 @@ def playSong(sp, songName):
 def playPLSong(sp, IDpl):
 	#print(songID)
 	#thankyou= 'spotify:track:2rPE9A1vEgShuZxxzR2tZH'
-	IDpl= ['spotify:playlist:'+IDpl]
+	IDpl= 'spotify:playlist:'+IDpl
 	print(IDpl)
 	sp.start_playback(device_id=None,context_uri=IDpl)
 
@@ -46,7 +46,6 @@ def getRecSongs(sp, userID):
 	TopTracks = sp.current_user_top_tracks(time_range='medium_term',limit=5,offset=0)
 	tracks = []
 	for item in TopTracks['items']:
-		print("TEST: ",item['id'])
 		tracks.append(item['id'])
 		
 	
@@ -55,11 +54,11 @@ def getRecSongs(sp, userID):
 	#test.append('0E0JKMR4uiCZhpI3brAoxI')
 	RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, country=None)
 
-	
-	#for item in RecSongList['items']:
-	#	tracks.append('spotify:track:'+item['id'])
-	#print(RecSongList)
-	#return RecSongList
+	ret=[]
+	for item in RecSongList['tracks']:
+		ret.append('spotify:track:'+item['id'])
+	print(ret)
+	return (ret)
 
 def createPlaylist(sp,user):
 	PLname = input("Enter playlist name you wish to create: ")
