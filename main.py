@@ -36,9 +36,9 @@ def playSong(sp, songName):
 
 def getRecSongs(sp, userID):
 	TopTracks = sp.current_user_top_tracks(limit=50, offset=0, time_range='medium_term')
-	print(TopTracks[0])
-	RecSongList = sp.recommendations(seed_artists=None, seed_genres=None, seed_tracks=TopSongs, limit=10, country=None)
 
+	RecSongList = sp.recommendations(seed_artists=None, seed_genres=None, seed_tracks=TopSongs, limit=10, country=None)
+	print(RecSongList)
 
 
 
@@ -51,7 +51,7 @@ def main(args):
 	sp = login(username, scope)
 
 	playSong(sp,'instrumental thank you next')
-
+	getRecSongs(sp, username)
 
 
 if __name__ == '__main__':
