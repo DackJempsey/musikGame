@@ -33,7 +33,8 @@ def playSong(sp, songName):
 	#print(songID)
 	#thankyou= 'spotify:track:2rPE9A1vEgShuZxxzR2tZH'
 	songID= ['spotify:track:'+songID]
-	sp.start_playback(device_id=None,context_uri=None,uris=songID,offset=None)
+	dev = sp.devices()
+	sp.start_playback(device_id=dev[0],context_uri=None,uris=songID,offset=None)
 	
 def playPLSong(sp, IDpl):
 	#print(songID)
