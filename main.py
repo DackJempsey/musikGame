@@ -35,9 +35,12 @@ def playSong(sp, songName):
 	sp.start_playback(device_id=None,context_uri=None,uris=songID,offset=None)
 
 def getRecSongs(sp, userID):
-	TopTracks = sp.current_user_top_tracks(limit=50, offset=0, time_range='medium_term')
-
-	RecSongList = sp.recommendations(seed_artists=None, seed_genres=None, seed_tracks=TopSongs, limit=10, country=None)
+	TopTracks = sp.current_user_top_tracks(time_range='medium_term',limit=10,offset=0)
+	tracks = []
+	for item in TopTracks['items']:
+		tracks.append(item['name'])
+	#print(tracks)
+	RecSongList = sp.recommendations(seed_artists=None, seed_genres=None, seed_tracks=tracks[0], limit=10, country=None)
 	print(RecSongList)
 
 
@@ -45,12 +48,14 @@ def getRecSongs(sp, userID):
 
 def main(args):
 	#make this a user input
-	username ='1210610133'#Jack Dempseys User id public info
+	#jackusername ='1210610133'#Jack Dempseys User id public info
+	input("User ID": )
 	scope = 'user-library-read user-read-private user-read-playback-state\
-		user-modify-playback-state playlist-modify-public playlist-modify-private'
+		user-modify-playback-state playlist-modify-public playlist-modify-private \
+		user-top-read'
 	sp = login(username, scope)
 
-	playSong(sp,'instrumental thank you next')
+	#playSong(sp,'instrumental thank you next')
 	getRecSongs(sp, username)
 
 
