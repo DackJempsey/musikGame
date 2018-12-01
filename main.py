@@ -26,10 +26,13 @@ def getSongID(sp, songName):
 	song = sp.search(songName, limit =1, offset=0,type='track',market=None)
 	for stuff in song['tracks']['items']:
 		return stuff['id']
-    
- def playSong(sp, songID):
- 
 
+ def playSong(sp, songID):
+
+def getRecSongs(sp, userID):
+	TopTracks = sp.current_user_top_tracks(limit=50, offset=0, time_range='medium_term')
+	print(TopTracks[0])
+	RecSongList = sp.recommendations(seed_artists=None, seed_genres=None, seed_tracks=TopSongs, limit=10, country=None)
 
 
 
@@ -38,9 +41,9 @@ def getSongID(sp, songName):
 	scope = 'user-library-read user-read-private user-read-playback-state\
 		user-modify-playback-state playlist-modify-public playlist-modify-private'
 	sp = login(username, scope)
-  
-  
-  
+
+
+
 if __name__ == '__main__':
 
     sys.exit(main(sys.argv))
