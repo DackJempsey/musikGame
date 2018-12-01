@@ -49,7 +49,7 @@ def createPlaylist(sp,user):
 	PLname = input("Enter playlist name you wish to create: ")
 	print("creating Playlist "+PLname+ " now")
 	
-	Info = sp.user_playlist_create(user, PLname, public=False,description="Made with Python")
+	Info = sp.user_playlist_create(user, PLname, public=False)
 	PLid = Info['id']
 	print(PLid)
 	return PLid
