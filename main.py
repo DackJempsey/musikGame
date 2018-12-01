@@ -49,7 +49,7 @@ def getRecSongs(sp, userID):
 def main(args):
 	#make this a user input
 	#jackusername ='1210610133'#Jack Dempseys User id public info
-	input("User ID: " )
+	username = input("User ID: " )
 	scope = 'user-library-read user-read-private user-read-playback-state\
 		user-modify-playback-state playlist-modify-public playlist-modify-private \
 		user-top-read'
