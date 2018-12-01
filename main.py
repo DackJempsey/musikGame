@@ -1,4 +1,5 @@
 import os,sys, spotipy, json, webbrowser, time
+import playGame
 import spotipy.util as util
 from json.decoder import JSONDecodeError
 
@@ -38,8 +39,8 @@ def getRecSongs(sp, userID):
 	TopTracks = sp.current_user_top_tracks(time_range='medium_term',limit=10,offset=0)
 	tracks = []
 	for item in TopTracks['items']:
-		tracks.append(item['name'])
-	#print(tracks)
+		tracks.append(item['id'])
+	#print(tracks[0])
 	RecSongList = sp.recommendations(seed_artists=None, seed_genres=None, seed_tracks=tracks[0], limit=10, country=None)
 	print(RecSongList)
 
@@ -51,7 +52,7 @@ def main(args):
 	#jackusername ='1210610133'#Jack Dempseys User id public info
 	username = input("User ID: " )
 	scope = 'user-library-read user-read-private user-read-playback-state\
-		user-modify-playback-state playlist-modify-public playlist-modify-private \
+		user-modify-playback-state playlist-modify-public playlist-modify-private\
 		user-top-read'
 	sp = login(username, scope)
 
