@@ -40,10 +40,9 @@ def getRecSongs(sp, userID):
 	tracks = []
 	for item in TopTracks['items']:
 		tracks.append(item['id'])
-	#print(tracks[0])
-	RecSongList = sp.recommendations(seed_artists=None, seed_genres=None, seed_tracks=tracks[0], limit=10, country=None)
+	print(tracks[0])
+	RecSongList = sp.recommendations(seed_tracks=['spotify:track:'+tracks[0]], limit=10, country=None)
 	print(RecSongList)
-
 
 
 
@@ -58,6 +57,9 @@ def main(args):
 
 	#playSong(sp,'instrumental thank you next')
 	getRecSongs(sp, username)
+	
+	
+	playGame.inputAns(sp, songID)
 
 
 if __name__ == '__main__':
