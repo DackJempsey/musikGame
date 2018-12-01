@@ -1,4 +1,4 @@
-import os,sys, spotipy, json, webbrowser, time
+import os,sys,spotipy, json, webbrowser, time
 import playGame
 import spotipy.util as util
 from json.decoder import JSONDecodeError
@@ -9,7 +9,7 @@ def login(username, scope):
 	try:
 		token = util.prompt_for_user_token(username,scope)#, client_id, client_secret, redirect_uri)
 	except:#(AttributeError, JSONDecodeError):
-		os.remove(f".cache-{username}")
+		os.remove(f",cache-{username}")
 		token = util.prompt_for_user_token(username,scope)#,client_id, client_secret, redirect_uri)
 
 	#creates spotipy object
@@ -33,25 +33,42 @@ def playSong(sp, songName):
 	#print(songID)
 	#thankyou= 'spotify:track:2rPE9A1vEgShuZxxzR2tZH'
 	songID= ['spotify:track:'+songID]
-	sp.start_playback(device_id=None,context_uri=None,uris=songID,offset=None)
+	dev = sp.devices()
+	sp.start_playback(device_id=dev[0],context_uri=None,uris=songID,offset=None)
+	
+def playPLSong(sp, IDpl):
+	#print(songID)
+	#thankyou= 'spotify:track:2rPE9A1vEgShuZxxzR2tZH'
+	IDpl= 'spotify:playlist:'+IDpl
+	print(IDpl)
+	sp.start_playback(device_id=None,context_uri=IDpl)
 
 def getRecSongs(sp, userID):
-	TopTracks = sp.current_user_top_tracks(time_range='medium_term',limit=10,offset=0)
+	TopTracks = sp.current_user_top_tracks(time_range='medium_term',limit=5,offset=0)
 	tracks = []
 	for item in TopTracks['items']:
-		tracks.append('spotify:track:'+item['id'])
-	tracks =[tracks]
-	RecSongList = sp.recommendations(seed_tracks=tracks, limit=10, country=None)
+		tracks.append(item['id'])
+		
 	
-	print(RecSongList)
-	
+	#test = []
+	#test.append('5nVK2UTeK0vJYePgxOjFPz')
+	#test.append('0E0JKMR4uiCZhpI3brAoxI')
+	RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, country=None)
+
+	ret=[]
+	for item in RecSongList['tracks']:
+		ret.append('spotify:track:'+item['id'])
+	print(ret)
+	return (ret)
+
 def createPlaylist(sp,user):
 	PLname = input("Enter playlist name you wish to create: ")
 	print("creating Playlist "+PLname+ " now")
-	
+
 	Info = sp.user_playlist_create(user, PLname, public=False)
 	PLid = Info['id']
-	print(PLid)
+	songList = getRecSongs(sp,user)
+	sp.user_playlist_replace_tracks(user,PLid,songList)
 	return PLid
 
 def deletePlaylist(sp,PLid,username):
@@ -64,18 +81,19 @@ def main(args):
 	username = input("User ID: " )
 	scope = 'user-library-read user-read-private user-read-playback-state\
 		user-modify-playback-state playlist-modify-public playlist-modify-private\
-		user-top-read'
+		user-top-read, user-read-recently-played, streaming'
 	sp = login(username, scope)
 
 	#playSong(sp,'instrumental thank you next')
 	#getRecSongs(sp, username)
 	PLid = createPlaylist(sp, username)
-	
-	
+	playPLSong(sp, PLid)
+
+
 	#playGame.inputAns(sp, songID)
-	
-	
-	
+
+
+
 	ans = input("Do you want to keep a playlist of Answers? (yes/no)")
 	if(ans == "yes"):
 		print("ok")
