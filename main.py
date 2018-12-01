@@ -40,8 +40,8 @@ def getRecSongs(sp, userID):
 	tracks = []
 	for item in TopTracks['items']:
 		tracks.append(item['id'])
-	print(tracks[0])
-	RecSongList = sp.recommendations(seed_tracks=['spotify:track:'+tracks[0]], limit=10, country=None)
+	print('spotify:track:'+trackstracks)
+	RecSongList = sp.recommendations(seed_tracks=['spotify:track:'+tracks], limit=10, country=None)
 	print(RecSongList)
 
 
