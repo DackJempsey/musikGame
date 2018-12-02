@@ -43,7 +43,7 @@ def playPLSong(sp, IDpl):
 	print(IDpl)
 	sp.start_playback(device_id=None,context_uri=IDpl)
 
-def getRecSongs(sp, userID):
+def getRecSongs(sp, userID,isInstrument):
 	TopTracks = sp.current_user_top_tracks(time_range='medium_term',limit=5,offset=0)
 	tracks = []
 	for item in TopTracks['items']:
@@ -53,8 +53,12 @@ def getRecSongs(sp, userID):
 	#test = []
 	#test.append('5nVK2UTeK0vJYePgxOjFPz')
 	#test.append('0E0JKMR4uiCZhpI3brAoxI')
-	RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, country=None)
-
+	if(~isInstrument):
+		RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, country=None,popularity=90)
+	else:
+		RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, \
+		country=None,popularity=90, instrumentalness= .9)
+	
 	ret=[]
 	for item in RecSongList['tracks']:
 		ret.append('spotify:track:'+item['id'])
@@ -67,7 +71,7 @@ def createPlaylist(sp,user):
 
 	Info = sp.user_playlist_create(user, PLname, public=False)
 	PLid = Info['id']
-	songList = getRecSongs(sp,user)
+	songList = getRecSongs(sp,user,isInstrument=False)
 	sp.user_playlist_replace_tracks(user,PLid,songList)
 	return PLid
 
