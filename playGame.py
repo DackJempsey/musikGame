@@ -40,12 +40,15 @@ def inputSong(sp, PLid):
 		currentSongScore = 120
 
 		start_time = time.time() # Only get 30 seconds to guess song
-		while(ans != songName and ((time.time() - start_time) < 30) and (currentSongScore>0)):
+		while(ans != songName and ((time.time() - start_time) < 120) and (currentSongScore>0)):
 			ans = input("Guess what song is playing: ")
 
-			print(str(currentSongScore)+'possible points')
+			print(str(currentSongScore - 20)+' possible points')
 			
 			currentSongScore-=20 #Every wrong guess decreases score by 20
+
+			songName = songName.split('-', 1)[0] #gets rid of things like: SongName - 2008 remastered Version
+			songName = songName.split("(", 1)[0] #gets rid of SongName (feat. future)
 			simScore = similar(ans.lower(), songName.lower())
 			if simScore>=.8:
 				print('Nice job! You guessed the song right.')
@@ -64,6 +67,8 @@ def inputSong(sp, PLid):
 		print('you got '+ str(currentSongScore) +'out of 500 points')
 	return currentSongScore
 
+
+	return totalScore
 
 def inputArtist(sp, PLid):
 
@@ -84,10 +89,13 @@ def inputArtist(sp, PLid):
 		currentSongScore = 120
 
 		start_time = time.time() # Only get 30 seconds to guess song
-		while(ans != artistName and ((time.time() - start_time) < 30) and (currentSongScore>0)):
+		while(ans != artistName and ((time.time() - start_time) < 120) and (currentSongScore>0)):
 			ans = input("Guess the artist of this song: ")
+
+			print(str(currentSongScore- 20)+' possible points')
 	
 			print(str(currentSongScore)+'possible points')
+
 			
 			currentSongScore-=20 #Every wrong guess decreases score by 20
 			simScore = similar(ans.lower(), artistName.lower())
@@ -102,7 +110,6 @@ def inputArtist(sp, PLid):
 		if(currentSongScore == 0):
 			print("You have run out of guesses for that artist... correct answer was: ", artistName)
 		sp.next_track(device_id = None) #after correctly guessing or 30 seconds move to next song
-
 		#sp.pause_playback(device_id=None)	
 	print('You finished with a final score of ', currentSongScore,' out of 500')
 	return currentSongScore
