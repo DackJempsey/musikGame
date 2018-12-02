@@ -26,7 +26,7 @@ def inputSong(sp, PLid):
 	#start playing playlist
 	#sp.start_playback(device_id = None, context_uri = None, uris = None, offset = None)
 
-
+	totalScore = 0
 
 	#start play playlist here
 	playPLSong(sp, PLid)
@@ -52,6 +52,7 @@ def inputSong(sp, PLid):
 			simScore = similar(ans.lower(), songName.lower())
 			if simScore>=.8:
 				print('Nice job! You guessed the song right.')
+				totalScore = totalScore + currentSongScore
 				break
 			else:
 				if(ans.lower() == 'quit'):
@@ -64,8 +65,8 @@ def inputSong(sp, PLid):
 		sp.next_track(device_id = None) #after correctly guessing or 30 seconds move to next song
 
 		#sp.pause_playback(device_id=None)
-		print('you got '+ str(currentSongScore) +'out of 500 points')
-	return currentSongScore
+		print('you got '+ str(totalScore) +'out of 500 points')
+	#return currentSongScore
 
 
 	return totalScore
@@ -101,6 +102,7 @@ def inputArtist(sp, PLid):
 			simScore = similar(ans.lower(), artistName.lower())
 			if simScore>=.8:
 				print('Nice job! You guessed the artist right.')
+				totalScore = totalScore + currentSongScore
 				break
 			else:
 				if(ans.lower() == 'quit'):
@@ -111,5 +113,5 @@ def inputArtist(sp, PLid):
 			print("You have run out of guesses for that artist... correct answer was: ", artistName)
 		sp.next_track(device_id = None) #after correctly guessing or 30 seconds move to next song
 		#sp.pause_playback(device_id=None)
-	print('You finished with a final score of ', currentSongScore,' out of 500')
-	return currentSongScore
+	print('You finished with a final score of ', totalScore,' out of 500')
+	return totalScore
