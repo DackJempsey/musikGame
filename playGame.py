@@ -47,12 +47,14 @@ def inputSong(sp, PLid):
 			print(str(currentSongScore)+'possible points')
 			
 			currentSongScore-=20 #Every wrong guess decreases score by 20
-
-			if ans == songName:
+			simScore = similar(ans.lower(), songName.lower())
+			if simScore>=.8:
 				print('Nice job! You guessed the song right.')
 				totalScore += currentSongScore; #if guessed correctly, add score to total
 				break
 			else:
+				if(ans.lower() = 'quit'):
+					return -1
 				print("That guess was incorrect.")
 
 		if(currentSongScore == 0):
