@@ -1,5 +1,5 @@
-![Packagist]https://img.shields.io/badge/Hackathon-HackDay-orange.svg
-![Packagist]https://img.shields.io/badge/%24-python3-blue.svg
+![Packagist](https://img.shields.io/badge/Hackathon-HackDay-orange.svg)
+![Packagist](https://img.shields.io/badge/%24-python3-blue.svg)
 
 # musikGame
 This is a music guessing game. Using the Spotify API we ask you to log into your spotify account. Then we play songs based on your intrest and you guess those songs for points. This was created at CU Boulder's Hack Day event Dec. 1st 2018
