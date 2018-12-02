@@ -99,8 +99,18 @@ def main(args):
 	#playPLSong(sp, PLid)
 
 	grandTotal = grandTotal + playGame.inputSong(sp, PLid)
-	print("Your total for level one is now "+str(grandTotal))
-	grandTotal = grandTotal + playGame.inputArtist(sp,PLid)
+	if grandTotal < 300:
+		print("You did not get a high enough score to pass level 1.\n Better luch next time.")
+		return
+	print("Congrats! You passed level 1!\nYour total score is now "+str(grandTotal))
+	level2 = playGame.inputArtist(sp,PLid)
+
+	if level2 < 300:
+		print("You did not get a high enough score to pass level 2.\n Better luch next time.")
+		return
+
+	grandTotal = grandTotal + level2
+	print("Congrats! You passed level 2!\nYour total score is now "+str(grandTotal))
 	print("Your total after level 2 is now "+str(grandTotal))
 
 
