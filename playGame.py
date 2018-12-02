@@ -41,7 +41,7 @@ def inputSong(sp, PLid):
 		currentSongScore = 120
 
 		start_time = time.time() # Only get 30 seconds to guess song
-		while(ans != songName and ((time.time() - start_time) < 30) and (currentSongScore>0)):
+		while(ans != songName and ((time.time() - start_time) < 120) and (currentSongScore>0)):
 			ans = input("Guess what song is playing: ")
 
 			print(str(currentSongScore - 20)+' possible points')
@@ -90,7 +90,7 @@ def inputArtist(sp, PLid):
 		currentSongScore = 120
 
 		start_time = time.time() # Only get 30 seconds to guess song
-		while(ans != artistName and ((time.time() - start_time) < 30) and (currentSongScore>0)):
+		while(ans != artistName and ((time.time() - start_time) < 120) and (currentSongScore>0)):
 			ans = input("Guess the artist of this song: ")
 
 			print(str(currentSongScore- 20)+' possible points')
