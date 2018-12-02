@@ -92,6 +92,9 @@ def inputArtist(sp, PLid):
 			ans = input("Guess the artist of this song: ")
 
 			print(str(currentSongScore- 20)+' possible points')
+	
+			print(str(currentSongScore)+'possible points')
+
 			
 			currentSongScore-=20 #Every wrong guess decreases score by 20
 			simScore = similar(ans.lower(), artistName.lower())
@@ -100,7 +103,9 @@ def inputArtist(sp, PLid):
 				totalScore += currentSongScore; #if guessed correctly, add score to total
 				break
 			else:
-				print("That guess was incorrect.")
+				if(ans.lower() = 'quit'):
+					return -1
+				input("That guess was incorrect")
 
 		if(currentSongScore == 0):
 			print("You have run out of guesses for that artist... correct answer was: ", artistName)
