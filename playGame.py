@@ -70,6 +70,8 @@ def inputSong(sp, PLid):
 
 	print('You finished with a final score of ', totalScore,' out of 500')
 
+	return totalScore
+
 def inputArtist(sp, PLid):
 	totalScore = 0 # Score starts at 0
 
@@ -117,3 +119,5 @@ def inputArtist(sp, PLid):
 		print('you have '+ str(totalScore) +' points')
 	
 	print('You finished with a final score of ', totalScore,' out of 500')
+
+	return totalScore
