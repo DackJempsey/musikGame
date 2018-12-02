@@ -79,21 +79,21 @@ def inputArtist(sp, PLid):
 
 		start_time = time.time() # Only get 30 seconds to guess song
 		while(ans != artistName and ((time.time() - start_time) < 30) and (currentSongScore>0)):
-			ans = input("Guess what song is playing: ")
+			ans = input("Guess the artist of this song: ")
 
 			print(str(currentSongScore)+'possible points')
 			
 			currentSongScore-=20 #Every wrong guess decreases score by 20
 
 			if ans == artistName:
-				print('Nice job! You guessed the song right.')
+				print('Nice job! You guessed the artist right.')
 				totalScore += currentSongScore; #if guessed correctly, add score to total
 				break
 			else:
 				print("That guess was incorrect.")
 
 		if(currentSongScore == 0):
-			print("You have run out of guesses for that song... correct answer was: ", artistName)
+			print("You have run out of guesses for that artist... correct answer was: ", artistName)
 		sp.next_track(device_id = None) #after correctly guessing or 30 seconds move to next song
 
 		#sp.pause_playback(device_id=None)
