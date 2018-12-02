@@ -30,10 +30,10 @@ def inputAns(sp, PLid):
 	playPLSong(sp, PLid)
 	for i in range(1, 6): #Play first five songs of playlist
 
-
+		time.sleep(1)
 		songName = sp.currently_playing(market = None) # getting song ID
 		songName = songName['item']['name']
-		print("SONG: ",songName)
+		#print("SONG: ", songName)
 		ans = 'not a song'
 		currentSongScore = 120
 
