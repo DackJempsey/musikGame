@@ -92,7 +92,12 @@ def main(args):
 	#getRecSongs(sp, username)
 	PLid = createPlaylist(sp, username)
 	#playPLSong(sp, PLid)
-	playGame.inputArtist(sp,PLid)
+
+	grandTotal = grandTotal + playGame.inputSong(sp, PLid)
+	print("Your total for level one is now "+str(grandTotal))
+	grandTotal = grandTotal + playGame.inputArtist(sp,PLid)
+	print("Your total after level 2 is now "+str(grandTotal))
+	
 
 
 
