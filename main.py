@@ -35,7 +35,7 @@ def playSong(sp, songName):
 	songID= ['spotify:track:'+songID]
 	dev = sp.devices()
 	sp.start_playback(device_id=dev[0],context_uri=None,uris=songID,offset=None)
-	
+
 def playPLSong(sp, IDpl):
 	#print(songID)
 	#thankyou= 'spotify:track:2rPE9A1vEgShuZxxzR2tZH'
@@ -49,7 +49,7 @@ def getRecSongs(sp, userID,isInstrument):
 	for item in TopTracks['items']:
 		tracks.append(item['id'])
 
-	
+
 	#test = []
 	#test.append('5nVK2UTeK0vJYePgxOjFPz')
 	#test.append('0E0JKMR4uiCZhpI3brAoxI')
@@ -63,7 +63,7 @@ def getRecSongs(sp, userID,isInstrument):
 			song = sp.search('instrumental'+items,limit=1,offset=0,type='track')
 			print(song)
 			return 0
-	
+
 	ret=[]
 	for item in RecSongList['tracks']:
 		ret.append('spotify:track:'+item['id'])
@@ -97,9 +97,12 @@ def main(args):
 	#getRecSongs(sp, username)
 	PLid = createPlaylist(sp, username,isInstrumental=False)
 	#playPLSong(sp, PLid)
-	#playGame.inputArtist(sp,PLid)
-	#PLid = createPLaylist(sp,username,isInstrumental=False)
-	playGame.inputArtist(sp,PLid)
+
+	grandTotal = grandTotal + playGame.inputSong(sp, PLid)
+	print("Your total for level one is now "+str(grandTotal))
+	grandTotal = grandTotal + playGame.inputArtist(sp,PLid)
+	print("Your total after level 2 is now "+str(grandTotal))
+
 
 
 	ans = input("Do you want to keep a playlist of Answers? (yes/no)")
