@@ -92,7 +92,7 @@ def main(args):
 	#getRecSongs(sp, username)
 	PLid = createPlaylist(sp, username)
 	#playPLSong(sp, PLid)
-	playGame.inputAns(sp,PLid)
+	playGame.inputArtist(sp,PLid)
 
 
 

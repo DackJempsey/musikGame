@@ -1,5 +1,8 @@
 import os,sys, spotipy,time
+from difflib import SequenceMatcher
 
+def similar(a, b):
+	return SequenceMatcher(None, a, b).ratio()
 
 def getsongLength(sp, songID):#gets length of the song
 	info = sp.audio_features(songID)
@@ -72,7 +75,11 @@ def inputArtist(sp, PLid):
 
 		time.sleep(1)
 		songName = sp.currently_playing(market = None) # getting song ID
-		artistName = songName['item']['artist']
+		artistName = songName['item']['artists'][0]['name']
+		print(artistName)
+		#for item in artistName:
+		#	print(item,'\n')
+		
 		#print("SONG: ", songName)
 		ans = 'not a song'
 		currentSongScore = 120
@@ -84,8 +91,8 @@ def inputArtist(sp, PLid):
 			print(str(currentSongScore)+'possible points')
 			
 			currentSongScore-=20 #Every wrong guess decreases score by 20
-
-			if ans == artistName:
+			simScore = similar(ans.lower(), artistName.lower())
+			if simScore>=.8:
 				print('Nice job! You guessed the artist right.')
 				totalScore += currentSongScore; #if guessed correctly, add score to total
 				break
