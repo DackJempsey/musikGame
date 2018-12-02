@@ -14,7 +14,7 @@ def playPLSong(sp, IDpl):
 	#print(songID)
 	#thankyou= 'spotify:track:2rPE9A1vEgShuZxxzR2tZH'
 	IDpl= 'spotify:playlist:'+IDpl
-	print(IDpl)
+	#print(IDpl)
 	sp.start_playback(device_id=None,context_uri=IDpl)
 
 
@@ -65,7 +65,7 @@ def inputSong(sp, PLid):
 		sp.next_track(device_id = None) #after correctly guessing or 30 seconds move to next song
 
 		#sp.pause_playback(device_id=None)
-		print('you got '+ str(totalScore) +'out of 500 points')
+		print('you got '+ str(totalScore) +' out of 500 points')
 	#return currentSongScore
 
 
@@ -81,7 +81,7 @@ def inputArtist(sp, PLid):
 		time.sleep(1)
 		songName = sp.currently_playing(market = None) # getting song ID
 		artistName = songName['item']['artists'][0]['name']
-		print(artistName)
+		#print(artistName)
 		#for item in artistName:
 		#	print(item,'\n')
 
