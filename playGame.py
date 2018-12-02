@@ -44,11 +44,14 @@ def inputSong(sp, PLid):
 		while(ans != songName and ((time.time() - start_time) < 30) and (currentSongScore>0)):
 			ans = input("Guess what song is playing: ")
 
-			print(str(currentSongScore)+'possible points')
+			print(str(currentSongScore - 20)+' possible points')
 			
 			currentSongScore-=20 #Every wrong guess decreases score by 20
 
-			if ans == songName:
+			songName = songName.split('-', 1)[0] #gets rid of things like: SongName - 2008 remastered Version
+			songName = songName.split("(", 1)[0] #gets rid of SongName (feat. future)
+			simScore = similar(ans.lower(), songName.lower())
+			if simScore < 0.8:
 				print('Nice job! You guessed the song right.')
 				totalScore += currentSongScore; #if guessed correctly, add score to total
 				break
@@ -88,7 +91,7 @@ def inputArtist(sp, PLid):
 		while(ans != artistName and ((time.time() - start_time) < 30) and (currentSongScore>0)):
 			ans = input("Guess the artist of this song: ")
 
-			print(str(currentSongScore)+'possible points')
+			print(str(currentSongScore- 20)+' possible points')
 			
 			currentSongScore-=20 #Every wrong guess decreases score by 20
 			simScore = similar(ans.lower(), artistName.lower())
