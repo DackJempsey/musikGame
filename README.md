@@ -3,6 +3,7 @@
 
 # musikGame
 This is a music guessing game. Using the Spotify API we ask you to log into your spotify account. Then we play songs based on your intrest and you guess those songs for points. This was created at CU Boulder's Hack Day event Dec. 1st 2018
+
 By:NAMES
 
 ## Usage
@@ -18,6 +19,6 @@ Then the quiz starts.
 
 
 ## Inspiration
-
+As a group we all liked the Idea of working with the Spotify API. We started our brainstorm with a playlist maker but thought that was too genereal(and has already been done by spotify). So after a brainstorm we decided that we wanted to build a game that was tailered towards that user.
 
 ## How it works
