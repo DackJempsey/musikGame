@@ -110,8 +110,8 @@ def main(args):
 		return
 
 	grandTotal = grandTotal + level2
-	print("Congrats! You passed level 2!\nYour total score is now "+str(grandTotal))
-	print("Your total after level 2 is now "+str(grandTotal))
+	print("Congrats! You passed level 2!\nYour total score after level 2 is "+str(grandTotal))
+	#print("Your total after level 2 is now "+str(grandTotal))
 
 
 
