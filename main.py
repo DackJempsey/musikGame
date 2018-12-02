@@ -87,6 +87,7 @@ def deletePlaylist(sp,PLid,username):
 def main(args):
 	#make this a user input
 	#jackusername ='1210610133'#Jack Dempseys User id public info
+	grandTotal =0
 	username = input("User ID: " )
 	scope = 'user-library-read user-read-private user-read-playback-state\
 		user-modify-playback-state playlist-modify-public playlist-modify-private\
@@ -95,7 +96,7 @@ def main(args):
 
 	#playSong(sp,'instrumental thank you next')
 	#getRecSongs(sp, username)
-	PLid = createPlaylist(sp, username,isInstrumental=False)
+	PLid = createPlaylist(sp, username,isInstrument=False)
 	#playPLSong(sp, PLid)
 
 	grandTotal = grandTotal + playGame.inputSong(sp, PLid)

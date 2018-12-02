@@ -54,7 +54,7 @@ def inputSong(sp, PLid):
 				print('Nice job! You guessed the song right.')
 				break
 			else:
-				if(ans.lower() = 'quit'):
+				if(ans.lower() == 'quit'):
 					return 0
 				print("That guess was incorrect.")
 
@@ -103,7 +103,7 @@ def inputArtist(sp, PLid):
 				print('Nice job! You guessed the artist right.')
 				break
 			else:
-				if(ans.lower() = 'quit'):
+				if(ans.lower() == 'quit'):
 					return 0
 				input("That guess was incorrect")
 
