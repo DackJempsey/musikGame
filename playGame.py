@@ -51,11 +51,13 @@ def inputSong(sp, PLid):
 			songName = songName.split('-', 1)[0] #gets rid of things like: SongName - 2008 remastered Version
 			songName = songName.split("(", 1)[0] #gets rid of SongName (feat. future)
 			simScore = similar(ans.lower(), songName.lower())
-			if simScore < 0.8:
+			if simScore>=.8:
 				print('Nice job! You guessed the song right.')
 				totalScore += currentSongScore; #if guessed correctly, add score to total
 				break
 			else:
+				if(ans.lower() = 'quit'):
+					return -1
 				print("That guess was incorrect.")
 
 		if(currentSongScore == 0):
