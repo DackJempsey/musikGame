@@ -109,3 +109,18 @@ def inputArtist(sp, PLid):
 		print('you have '+ str(totalScore) +' points')
 	
 	print('You finished with a final score of ', totalScore,' out of 500')
+	
+	
+	
+	
+	
+	
+def level3Instrumental(sp, PLid):
+	#need to find the songs when we et playlists
+	
+	
+	
+	
+	
+	
+	

@@ -57,7 +57,12 @@ def getRecSongs(sp, userID,isInstrument):
 		RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, country=None,popularity=100)
 	else:
 		RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, \
-		country=None,popularity=100, instrumentalness= .9)
+			country=None,popularity=100)
+		instrumentals=[]
+		for items in RecSongList:
+			song = sp.search('instrumental'+items,limit=1,offset=0,type='track')
+			print(song)
+			return 0
 	
 	ret=[]
 	for item in RecSongList['tracks']:
@@ -65,13 +70,13 @@ def getRecSongs(sp, userID,isInstrument):
 	print(ret)
 	return (ret)
 
-def createPlaylist(sp,user):
+def createPlaylist(sp,user,isInstrument):
 	PLname = input("Enter playlist name you wish to create: ")
 	print("creating Playlist "+PLname+ " now")
 
 	Info = sp.user_playlist_create(user, PLname, public=False)
 	PLid = Info['id']
-	songList = getRecSongs(sp,user,isInstrument=False)
+	songList = getRecSongs(sp,user,isInstrument)
 	sp.user_playlist_replace_tracks(user,PLid,songList)
 	return PLid
 
@@ -90,10 +95,11 @@ def main(args):
 
 	#playSong(sp,'instrumental thank you next')
 	#getRecSongs(sp, username)
-	PLid = createPlaylist(sp, username)
+	PLid = createPlaylist(sp, username,isInstrumental=False)
 	#playPLSong(sp, PLid)
+	#playGame.inputArtist(sp,PLid)
+	#PLid = createPLaylist(sp,username,isInstrumental=False)
 	playGame.inputArtist(sp,PLid)
-
 
 
 	ans = input("Do you want to keep a playlist of Answers? (yes/no)")
