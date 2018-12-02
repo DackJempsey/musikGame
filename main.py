@@ -48,16 +48,16 @@ def getRecSongs(sp, userID,isInstrument):
 	tracks = []
 	for item in TopTracks['items']:
 		tracks.append(item['id'])
-		
+
 	
 	#test = []
 	#test.append('5nVK2UTeK0vJYePgxOjFPz')
 	#test.append('0E0JKMR4uiCZhpI3brAoxI')
 	if(~isInstrument):
-		RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, country=None,popularity=90)
+		RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, country=None,popularity=100)
 	else:
 		RecSongList = sp.recommendations(seed_artist=None , seed_genres=None , seed_tracks=tracks, limit=10, \
-		country=None,popularity=90, instrumentalness= .9)
+		country=None,popularity=100, instrumentalness= .9)
 	
 	ret=[]
 	for item in RecSongList['tracks']:

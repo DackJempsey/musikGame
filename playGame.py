@@ -87,7 +87,7 @@ def inputArtist(sp, PLid):
 		start_time = time.time() # Only get 30 seconds to guess song
 		while(ans != artistName and ((time.time() - start_time) < 30) and (currentSongScore>0)):
 			ans = input("Guess the artist of this song: ")
-
+	
 			print(str(currentSongScore)+'possible points')
 			
 			currentSongScore-=20 #Every wrong guess decreases score by 20
@@ -97,7 +97,9 @@ def inputArtist(sp, PLid):
 				totalScore += currentSongScore; #if guessed correctly, add score to total
 				break
 			else:
-				print("That guess was incorrect.")
+				if(ans.lower() = 'quit'):
+					return -1
+				input("That guess was incorrect")
 
 		if(currentSongScore == 0):
 			print("You have run out of guesses for that artist... correct answer was: ", artistName)
